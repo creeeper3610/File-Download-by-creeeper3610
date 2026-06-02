@@ -3,35 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ファイルダウンロード</title>
+    <title>ファイルダウンロード一覧</title>
     <style>
-        /* 簡単な見た目の調整（中央寄せ・ボタン風のデザイン） */
+        /* ページ全体のレイアウト（中央配置） */
         body {
             font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* heightからmin-heightに変更（中身が増えても伸びるように） */
             margin: 0;
+            padding: 20px;
             background-color: #f5f5f5;
+            box-sizing: border-box;
         }
+
+        /* 白い背景のカード（幅を固定し、高さは中身に応じて自動伸縮） */
         .container {
-            text-align: center;
+            width: 100%;
+            max-width: 400px; /* 横幅を使いやすいサイズに固定 */
             background: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-sizing: border-box;
         }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* ボタンを縦に並べるための外枠（隙間を自動調整） */
+        .download-list {
+            display: flex;
+            flex-direction: column; /* 中身を強制的に「縦一列」にする */
+            gap: 15px; /* ボタン同士の縦の隙間を15pxに固定 */
+        }
+
+        /* ボタン単体のデザイン（ブロック要素にして横幅いっぱいに広げる） */
         .download-btn {
-            display: inline-block;
-            padding: 12px 24px;
+            display: block; /* 横いっぱいに広がるブロック要素化 */
+            padding: 14px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: bold;
+            text-align: center;
             transition: background-color 0.2s;
+            box-sizing: border-box;
         }
+
         .download-btn:hover {
             background-color: #0056b3;
         }
@@ -40,16 +64,27 @@
 <body>
 
     <div class="container">
-        <h1>ファイルのダウンロード</h1>
-        <p>下のボタンをクリックすると、ファイルをダウンロードできます。</p>
+        <h1>ダウンロードリスト</h1>
         
-        <!-- ご指定のパスに設定したダウンロードリンク -->
-        <a href="../files/kyouseilogout.zip" download="kyouseilogout.zip" class="download-btn">
-            kyouseilogout.zip をダウンロード
-        </a>
-        <a href="../files/kyouseilogout.zip" download="kyouseilogout.zip" class="download-btn">
-            kyouseilogout.zip をダウンロード
-        </a>
+        <!-- flex-direction: column により、中の <a> タグが自動で縦に並びます -->
+        <div class="download-list">
+            
+            <!-- 1つ目のファイル -->
+            <a href="../files/kyouseilogout.zip" download="kyouseilogout.zip" class="download-btn">
+                a.zip をダウンロード
+            </a>
+
+            <!-- 2つ目のファイル（以降、同じように増やせます） -->
+            <a href="../files/b.zip" download="b.zip" class="download-btn">
+                b.zip をダウンロード
+            </a>
+
+            <!-- 3つ目のファイル -->
+            <a href="../files/c.zip" download="c.zip" class="download-btn">
+                c.zip をダウンロード
+            </a>
+
+        </div>
     </div>
 
 </body>
